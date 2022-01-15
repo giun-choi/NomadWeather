@@ -89,28 +89,31 @@ const styles = StyleSheet.create({
   },
   city: {
     flex: 1.2,
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
   },
   cityName: {
-    fontSize: 60,
+    fontSize: 50,
     fontWeight: "500",
     textAlign: "center",
+    color: "white",
   },
-  weather: {},
   day: {
     width: SCREEN_WIDTH,
-    alignItems: "center",
+    alignItems: "flex-start",
+    paddingLeft: 20,
   },
   temp: {
     marginTop: 50,
-    fontSize: 178,
+    fontSize: 100,
+    color: "white",
   },
   description: {
-    marginTop: -30,
-    fontSize: 60,
+    fontSize: 30,
+    color: "white",
   },
   tinyText: {
     fontSize: 20,
+    color: "white",
   },
 });
