@@ -8,10 +8,21 @@ import {
   ActivityIndicator,
 } from "react-native";
 import * as Location from "expo-location";
+import { Fontisto } from "@expo/vector-icons";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const API_KEY = "2c558b30935c5e96220e620796885b54";
+
+const icons = {
+  Clouds: "cloudy",
+  Clear: "day-sunny",
+  Atmosphere: "cloudy-gusts",
+  Snow: "snow",
+  Rain: "rains",
+  Drizzle: "rain",
+  Thunderstorm: "lightning",
+};
 
 export default function App() {
   const [city, setCity] = useState("Loading...");
@@ -56,19 +67,33 @@ export default function App() {
         {days.length === 0 ? (
           <View style={styles.day}>
             <ActivityIndicator
-              color="white"
+              color="black"
               style={{ marginTop: 10 }}
               size="large"
             />
           </View>
         ) : (
           days.map((day, index) => {
-            // console.log(day);
             return (
               <View key={index} style={styles.day}>
-                <Text style={styles.temp}>
-                  {parseFloat(day.temp.day).toFixed(1)}
-                </Text>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    width: "100%",
+                    justifyContent: "space-between",
+                    paddingRight: 20,
+                  }}
+                >
+                  <Text style={styles.temp}>
+                    {parseFloat(day.temp.day).toFixed(1)}
+                  </Text>
+                  <Fontisto
+                    name={icons[day.weather[0].main]}
+                    size={68}
+                    color="black"
+                  />
+                </View>
                 <Text style={styles.description}>{day.weather[0].main}</Text>
                 <Text style={styles.tinyText}>
                   {day.weather[0].description}
@@ -85,7 +110,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "tomato",
+    backgroundColor: "yellow",
   },
   city: {
     flex: 1.2,
@@ -96,7 +121,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
     fontWeight: "500",
     textAlign: "center",
-    color: "white",
+    color: "black",
   },
   day: {
     width: SCREEN_WIDTH,
@@ -106,14 +131,14 @@ const styles = StyleSheet.create({
   temp: {
     marginTop: 50,
     fontSize: 100,
-    color: "white",
+    color: "black",
   },
   description: {
     fontSize: 30,
-    color: "white",
+    color: "black",
   },
   tinyText: {
     fontSize: 20,
-    color: "white",
+    color: "black",
   },
 });
